@@ -20,7 +20,6 @@ def init_db():
     # Tabla Pedidos
     c.execute('''CREATE TABLE IF NOT EXISTS pedidos (id INTEGER PRIMARY KEY, mesa INTEGER, total REAL, estado TEXT)''')
     
-    # Datos Semilla (Seed Data) - Solo si está vacía
     c.execute('SELECT count(*) FROM usuarios')
     if c.fetchone()[0] == 0:
         c.execute("INSERT INTO usuarios (username, password, role) VALUES ('admin', '1234', 'admin')")
@@ -30,7 +29,7 @@ def init_db():
         conn.commit()
     conn.close()
 
-# --- RUTAS ---
+# RUTAS 
 
 @app.route('/')
 def index():
